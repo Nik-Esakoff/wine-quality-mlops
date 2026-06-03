@@ -3,3 +3,8 @@ __pycache__/
 *.pyc
 .env
 mlruns/
+.airflow/
+.DS_Store
+
+# DVC cache
+.dvc/cache/
