@@ -7,4 +7,10 @@ mlruns/
 .DS_Store
 
 # DVC cache
-.dvc/cache/
+.dvc/cache/mlflow.db
+mlflow.db-*
+
+# MLflow local database
+mlflow.db
+mlflow.db-*
+/models
