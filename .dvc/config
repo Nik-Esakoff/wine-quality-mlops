@@ -1,0 +1,5 @@
+[core]
+    remote = storage
+['remote "storage"']
+    url = s3://mlops-data/wine-quality-mlops
+    endpointurl = http://85.239.47.84:9000
