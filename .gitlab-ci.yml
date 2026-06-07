@@ -1,0 +1,39 @@
+
+
+stages:
+  - lint
+  - dvc
+  - test
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
+    - when: never
+
+lint:
+  stage: lint
+  image: python:3.11-slim
+  before_script:
+    - python -m pip install --upgrade pip
+    - pip install ruff
+  script:
+    - ruff check src tests dags
+
+check_dvc:
+  stage: dvc
+  image: python:3.11-slim
+  before_script:
+    - python -m pip install --upgrade pip
+    - pip install "dvc[s3]"
+  script:
+    - dvc pull -v
+
+test_api:
+  stage: test
+  image: python:3.11-slim
+  before_script:
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+  script:
+    - dvc pull -v
+    - python -m pytest tests/ -v

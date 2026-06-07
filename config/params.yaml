@@ -1,0 +1,18 @@
+data:
+  path: data/raw/winequality-red.csv
+  target: quality
+  test_size: 0.2
+  random_state: 42
+
+models:
+  ridge:
+    alpha: 1.0
+
+  random_forest:
+    n_estimators: 200
+    max_depth: 8
+    random_state: 42
+
+output:
+  model_path: models/wine_model.joblib
+  model_info_path: models/model_info.json
